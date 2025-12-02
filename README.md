@@ -7,3 +7,12 @@ A Convolutional Neural Network built from scratch to classify images of Simpsons
 ## Why "BART"?
 
 The repo name "BART" is a reference to Bart Simpson, one of the main characters from The Simpsons. It also nods to the popular NLP architecture "BERT," blending the themes of deep learning and the Simpsons - even though BERT is not a vision model.
+
+## Setup
+Check your Python version with `python --version`. If it is not already Python 3.14, set it to 3.14. Then create a virtual environment with:
+
+`python -m venv BART_venv`
+
+and install requirements with:
+
+`pip install -r requirements.txt`
