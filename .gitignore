@@ -210,3 +210,4 @@ __marimo__/
 # Author's additions
 hw.pdf
 characters_train/**
+results.json
