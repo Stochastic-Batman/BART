@@ -25,6 +25,10 @@ and install requirements with:
 
 ## Project Structure (Jupyter Notebook)
 
+There are 2 Jupyter notebooks that should be run in this order:
+1. `train.ipynb` - the larger notebook; it includes some data exploration, reasoning on model architecture, and, of course, training.
+2. `inference.ipynb` - this notebook is for inference only.
+
 ## Project Structure (Python)
 
 ### `train.py`
@@ -47,10 +51,13 @@ Main training script. Handles:
 > - `get_data(directory)`: Loads PIL images and labels from directory structure
 > - `SimpsonsDataset`: PyTorch Dataset class that converts images to tensors and normalizes them
 
+### `inference.py`
+The standalone script is for inference. 
+It can process all the images in the `inference_images/` folder or only a single image. 
+See the section below for more details.
 
-## Running the code (Jupyter Notebook)
 
-## Running the code (Python)
+## Running the Python code
 
 For training, run:
 
