@@ -1,12 +1,15 @@
 import argparse
+import joblib
 import logging
 import numpy as np
+import os
 import random
 import torch
 import torch.nn as nn
 import torch.optim as optim
 
 from BART import BART
+from PIL import Image as PILImage
 from torch.utils.data import DataLoader
 from SimpsonsDataset import get_data, SimpsonsDataset
 from sklearn.model_selection import train_test_split
@@ -95,6 +98,15 @@ if __name__ == "__main__":
     labels_encoded = label_encoder.fit_transform(labels)
 
     X_train, X_test, y_train, y_test = train_test_split(images, labels_encoded, test_size=0.2, random_state=SEED)
+
+    os.makedirs('inference_images', exist_ok=True)
+    for i, img_array in enumerate(X_test):
+        img = PILImage.fromarray(img_array)
+        img.save(f'inference_images/pic_{i}.jpg')
+
+    joblib.dump(label_encoder, 'label_encoder.joblib')
+    logger.info("Saved label_encoder.joblib")
+    logger.info(f"Saved {len(X_test)} test images to inference_images/")
 
     logger.info(f"Training set size: {len(X_train)}")
     logger.info(f"Test set size: {len(X_test)}")

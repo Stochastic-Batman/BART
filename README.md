@@ -6,7 +6,8 @@ A Convolutional Neural Network built from scratch to classify images of Simpsons
 The goal is to train a model that can accurately recognize multiple characters from the show, using a dataset organized by character and evaluated with the Macro F1 Score. No pre-trained models or transfer learning are allowed; 
 the entire pipeline is custom-built.
 
-The repository can be run as 2 Jupyter notebooks or as Python code, ultimately yielding the same output.
+The repository can be run as 2 Jupyter notebooks or as Python code, ultimately yielding the same output. 
+This model works with `.jpg` images.
 
 ## Why "BART"?
 
@@ -54,3 +55,12 @@ Main training script. Handles:
 For training, run:
 
 `python train.py --bs=32 --lr=0.001 --epochs=20`
+
+For testing purposes, `train.py` saves 20% of the data to the `inference_images/` folder so that `inference.py` can use it later.
+Users can add their images for inference to the `inference_images/` folder and run the inference with:
+
+`python inference.py`
+
+If there is only a single image to infer, one can specify:
+
+`python inference.py IMAGE_NAME.jpg`
