@@ -45,3 +45,12 @@ Main training script. Handles:
 > #### `SimpsonsDataset.py`
 > - `get_data(directory)`: Loads PIL images and labels from directory structure
 > - `SimpsonsDataset`: PyTorch Dataset class that converts images to tensors and normalizes them
+
+
+## Running the code (Jupyter Notebook)
+
+## Running the code (Python)
+
+For training, run:
+
+`python train.py --bs=32 --lr=0.001 --epochs=20`
