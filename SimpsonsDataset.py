@@ -6,6 +6,19 @@ from PIL import Image as PILImage
 from torch.utils.data import Dataset
 
 
+def prefix_folder_name(directory: str) -> None:
+    for c in sorted(os.listdir(directory)):
+        if c in [".DS_Store", "simpsons_dataset"]:  # Remnants of the past...
+            continue
+        folder_path = os.path.join(directory, c)
+        for f in os.listdir(folder_path):
+            if not f.startswith("pic_"):
+                continue
+            old_path = os.path.join(folder_path, f)
+            new_path = os.path.join(folder_path, f"{c}_{f}")
+            os.rename(old_path, new_path)
+
+
 def get_data(directory: str) -> tuple[list[PILImage.Image], list[str], int]:
     images: list[PILImage.Image] = []
     labels: list[str] = []

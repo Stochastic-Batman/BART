@@ -54,7 +54,7 @@ Main training script. Handles:
 
 For training, run:
 
-`python train.py --bs=32 --lr=0.001 --epochs=20`
+`python train.py --bs=32 --lr=0.001 --epochs=20 --folder_name="characters_train"`
 
 For testing purposes, `train.py` saves 20% of the data to the `inference_images/` folder so that `inference.py` can use it later.
 Users can add their images for inference to the `inference_images/` folder and run the inference with:

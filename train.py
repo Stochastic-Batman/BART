@@ -11,7 +11,7 @@ import torch.optim as optim
 from BART import BART
 from PIL import Image as PILImage
 from torch.utils.data import DataLoader
-from SimpsonsDataset import get_data, SimpsonsDataset
+from SimpsonsDataset import get_data, prefix_folder_name, SimpsonsDataset
 from sklearn.model_selection import train_test_split
 from sklearn.preprocessing import LabelEncoder
 
@@ -46,17 +46,20 @@ def seed_worker(worker_id: int) -> None:
 
 if __name__ == "__main__":
     # hyperparameters
-    parser = argparse.ArgumentParser(description='Train BART model')
-    parser.add_argument('--bs', type=int, default=32, help='Batch size')
-    parser.add_argument('--lr', type=float, default=0.001, help='Learning rate')
-    parser.add_argument('--epochs', type=int, default=20, help='Number of epochs')
+    parser = argparse.ArgumentParser(description="Train BART model")
+    parser.add_argument("--bs", type=int, default=32, help="Batch size")
+    parser.add_argument("--lr", type=float, default=0.001, help="Learning rate")
+    parser.add_argument("--epochs", type=int, default=20, help="Number of epochs")
+    parser.add_argument("--folder_name", type=str, default="characters_train", help="Folder with subfolders with Simpson images")
     args = parser.parse_args()
 
     BS = args.bs
     LR = args.lr
     EPOCHS = args.epochs
+    FOLDER_NAME = args.folder_name
 
-    images, labels, class_count = get_data('characters_train')
+    prefix_folder_name(FOLDER_NAME)
+    images, labels, class_count = get_data(FOLDER_NAME)
     logger.info(f"The number of images: {len(images)} is equal to the number of labels: {len(images) == len(labels)}")
     logger.info(f"Number of classes: {class_count}")
 
