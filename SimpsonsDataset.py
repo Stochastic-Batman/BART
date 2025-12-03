@@ -2,12 +2,12 @@ import numpy as np
 import os
 import torch
 
-from PIL import Image
+from PIL import Image as PILImage
 from torch.utils.data import Dataset
 
 
-def get_data(directory: str) -> tuple[list[Image.Image], list[str], int]:
-    images: list[Image.Image] = []
+def get_data(directory: str) -> tuple[list[PILImage.Image], list[str], int]:
+    images: list[PILImage.Image] = []
     labels: list[str] = []
     class_count: int = 0
 
@@ -20,7 +20,7 @@ def get_data(directory: str) -> tuple[list[Image.Image], list[str], int]:
 
         for f in sorted(os.listdir(cp)):
             fpath = os.path.join(cp, f)
-            with Image.open(fpath) as img:
+            with PILImage.open(fpath) as img:
                 assert(img.mode == 'RGB')  # I actually placed this here after I printed shapes, so it's kinda cheating
                 images.append(img.copy())  # .copy() loads image into memor, cause PIL loads images lazily
             labels.append(c)

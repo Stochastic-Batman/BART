@@ -115,6 +115,7 @@ if __name__ == "__main__":
     train_dataset = SimpsonsDataset(X_train, y_train)
     test_dataset = SimpsonsDataset(X_test, y_test)
 
+    # For reproducibility
     g = torch.Generator()
     g.manual_seed(SEED)
 
