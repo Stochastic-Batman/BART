@@ -1,3 +1,4 @@
+import argparse
 import logging
 import numpy as np
 import random
@@ -41,6 +42,17 @@ def seed_worker(worker_id: int) -> None:
 
 
 if __name__ == "__main__":
+    # hyperparameters
+    parser = argparse.ArgumentParser(description='Train BART model')
+    parser.add_argument('--bs', type=int, default=32, help='Batch size')
+    parser.add_argument('--lr', type=float, default=0.001, help='Learning rate')
+    parser.add_argument('--epochs', type=int, default=20, help='Number of epochs')
+    args = parser.parse_args()
+
+    BS = args.bs
+    LR = args.lr
+    EPOCHS = args.epochs
+
     images, labels, class_count = get_data('characters_train')
     logger.info(f"The number of images: {len(images)} is equal to the number of labels: {len(images) == len(labels)}")
     logger.info(f"Number of classes: {class_count}")
@@ -86,11 +98,6 @@ if __name__ == "__main__":
 
     logger.info(f"Training set size: {len(X_train)}")
     logger.info(f"Test set size: {len(X_test)}")
-
-    # hyperparameters
-    BS = 32
-    LR = 0.001
-    EPOCHS = 20
 
     # create datasets and dataloaders
     train_dataset = SimpsonsDataset(X_train, y_train)
